@@ -1,0 +1,26 @@
+{
+ "name": "DS3231",
+ "type": "plugin",
+ "description": "The DS3231 is a low-cost, extremely accurate I2C real-time clock (RTC) with an integrated emperaturecompensated crystal oscillator (TCXO) and crystal.",
+ "version": "0.0.1",
+ "homepage": "",
+ "files": ["DS3231.init","DS3231.info","DS3231.lua","DS3231.run","DS3231.html"],
+ "page": ["DS3231.html"],
+ "repository": {
+  "type": "git",
+  "url": "https://github.com/bondrogeen/DS3231"
+ },
+ "keywords": ["esp8266", "lua", "nodemcu", "DS3231"],
+ "author": {
+  "name": "bondrogeen",
+  "email": "bondrogeen@gmail.com"
+ },
+ "native": {
+  "run": {
+   "val":false,
+   "name":"Run"
+  }  
+ },
+ "license": "MIT",
+ "modules": ["file", "gpio", "sjson", "i2c"]
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <title>Web-server</title>
+ <link rel="stylesheet" href="style.css.gz" />
+ <style>
+  .cont {
+   margin-top: 1em;
+  }
+ </style>
+</head>
+
+<body>
+ <div class="cont">
+  <div class="row">
+   <div class="s12 m6 l4 of-l1">
+						<h2>Time</h2>
+						<div class="row">
+							<div class="group">
+								<input id="time" type="datetime-local" value="<?lua return(dofile('DS3231.lua')({getStr=true}))?>" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" required>
+								<button  onclick="set_time()">Задать</button>
+							</div>
+						</div>
+						<div class="row">
+							Temperature :	<?lua return(dofile('DS3231.lua')({temp=true}))?>
+						</div>
+   </div>
+  </div>
+ </div>
+ <script>
+  function send(page, data, callback) {
+   var req = new XMLHttpRequest();
+   req.open("POST", page, true);
+   req.setRequestHeader('Content-Type', 'application/json');
+   req.addEventListener("load", function() {
+    if (req.status < 400) {
+     callback(req.responseText);
+    } else {
+     callback(false);
+    }
+   });
+   req.send(JSON.stringify(data));
+  }
+{"sec","min","hour","day","date","month","year"}
+		function set_time() {
+			var data = [];
+			var str = document.getElementById("time").value;
+			str = str.replace(/(\d+)\-(\d+)\-(\d+)\T(\d+)\:(\d+)/, '$1,$2,$3,$4,$5');
+			str = str.split(',');
+			data[6] = str[0].substr(-2);
+			data[5] = str[1];
+			data[4] = str[2];
+			data[2] = str[3];
+			data[1] = str[4];
+			data[0] = 0;
+			data[3] = 1;
+			send("DS3231.lua", {"set":data}, function(res) {
+    if (res){
+     alert("Date and time set");
+    }else{
+     alert("Error");
+    }
+   });
+		}
+
+  function nav() {
+   var x = document.getElementById("myTopnav");
+   if (x.classList.contains("res")) {
+    x.classList.remove('res');
+   } else {
+    x.classList.add('res');
+   }
+  }
+
+ </script>
+</body>
+
+</html>
