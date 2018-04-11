@@ -20,8 +20,9 @@
  {
    "id":"run",
    "val":false,
+   "type": "checkbox",
    "name":"Run"
-  }  
+  }
  ],
  "license": "MIT",
  "modules": ["file", "gpio", "sjson", "i2c"]
