@@ -3,6 +3,7 @@
  "type": "plugin",
  "description": "The DS3231 is a low-cost, extremely accurate I2C real-time clock (RTC) with an integrated emperaturecompensated crystal oscillator (TCXO) and crystal.",
  "version": "0.0.1",
+ "img":"https://raw.githubusercontent.com/bondrogeen/DS3231/master/doc/logo.jpg",
  "homepage": "",
  "files": ["DS3231.init","DS3231.info","DS3231.lua","DS3231.run","DS3231.html"],
  "page": ["DS3231.html"],
@@ -15,12 +16,13 @@
   "name": "bondrogeen",
   "email": "bondrogeen@gmail.com"
  },
- "native": {
-  "run": {
+ "native": [
+ {
+   "id":"run",
    "val":false,
    "name":"Run"
   }  
- },
+ ],
  "license": "MIT",
  "modules": ["file", "gpio", "sjson", "i2c"]
 }
