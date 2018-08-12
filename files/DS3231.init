@@ -1,3 +1,5 @@
 {
- "run": false
+ "run": false,
+ "sda": 4,
+ "scl": 3
 }

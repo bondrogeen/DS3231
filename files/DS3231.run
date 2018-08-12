@@ -1,0 +1,9 @@
+return function (t)
+local r
+ if t.run then 
+  r=dofile("DS3231.lua")({init=t})
+ else
+  print("Plugin DS3231 not started")
+ end
+ return r
+end
